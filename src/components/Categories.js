@@ -1,5 +1,6 @@
 import React from 'react'
 import { retrieveCategoriesFunction } from '../helper'
+import Questions from './Questions'
 
 export default class Categories extends React.Component {
     constructor (props) {
@@ -37,6 +38,7 @@ export default class Categories extends React.Component {
                         {categories}
                     </select>
                 </div>
+                <Questions categoryId={categoryId} />
             </div>
         )
     }

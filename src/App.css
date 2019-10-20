@@ -38,3 +38,45 @@ select {
 .custom-select:hover::after {
   color: #f39c12;
 }
+
+.questions-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.single-question {
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+}
+
+.sub-container {
+  border: 1px solid white;
+  background-color: #009688;
+  color: black;
+  padding: 30px;
+}
+
+.difficulty {
+  flex-basis: 10%;
+  text-align: center;
+}
+
+.category {
+  flex-basis: 28%;
+  text-align: center;
+  background-color: #80CBC4;
+}
+
+.question {
+  cursor: pointer;
+  flex-basis: 60%;
+}
+
+.question:hover {
+  background-color: #4DB6AC;
+}
+
+.loading {
+  margin: 150px auto;
+}
