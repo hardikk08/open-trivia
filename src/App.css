@@ -80,3 +80,62 @@ select {
 .loading {
   margin: 150px auto;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.question-data {
+  display: flex;
+  color: black;
+  padding: 30px;
+}
+
+.question-question {
+  padding: 30px;
+  flex-basis: 75%;
+}
+
+.question-difficulty {
+  padding: 30px;
+  flex-basis: 10%;
+}
+
+.question-back {
+  padding: 30px;
+  flex-basis: 5%;
+  background-color: #4DB6AC;
+}
+
+.question-back:hover {
+  background-color: rgb(112, 149, 158);
+  cursor: pointer;
+}
+
+.question-type {
+  padding: 30px;
+  flex-basis: 10%;
+}
+
+.question-common-color {
+  border: 1px solid white;
+  background-color: #f39c12;
+}
+
+.answers {
+  display: flex;
+  padding: 30px;
+  margin-top: 50px;
+  justify-content: space-evenly;
+}
+
+.correct-answer {
+  padding: 30px;
+  background-color: #4CAF50;
+}
+
+.incorrect-answer {
+  padding: 30px;
+  background-color: #FF5722;
+}

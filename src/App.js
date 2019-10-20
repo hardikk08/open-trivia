@@ -1,12 +1,18 @@
 import React from 'react';
-import Categories from './components/Categories'
 import './App.css';
+import Categories from './components/Categories'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import QuestionAnswer from './components/QuestionAnswer'
 
 function App() {
+
   return (
-    <div className="App">
-      <Categories />
-    </div>
+    <Router>
+      <div className="App1">
+          <Route path="/" exact component={Categories} />
+          <Route path="/question" component={QuestionAnswer} />
+      </div>
+    </Router>
   );
 }
 

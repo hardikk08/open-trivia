@@ -1,8 +1,18 @@
 import React from 'react'
 import { retrieveCategoriesFunction } from '../helper'
 import Questions from './Questions'
+import { connect } from 'react-redux'
+import { addCategory } from '../redux/actions'
 
-export default class Categories extends React.Component {
+function mapDispatchToProps (dispatch) {
+    return {
+        addCategory: category => dispatch(addCategory(category))
+    }
+}
+
+const mapStateToProps = (state) => ({categoryId: state.categoryId})
+
+class Categories extends React.Component {
     constructor (props) {
         super(props)
         this.state = {
@@ -21,7 +31,9 @@ export default class Categories extends React.Component {
     }
 
     showQuestionsByCategory (event) {
-        this.setState({categoryId: event.target.value})    
+        const categoryId = event.target.value
+        this.setState({ categoryId })
+        this.props.addCategory({ categoryId })
     }
 
     render () {
@@ -43,3 +55,5 @@ export default class Categories extends React.Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)

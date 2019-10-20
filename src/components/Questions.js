@@ -1,7 +1,18 @@
 import React from 'react'
 import { retrieveQuestionsByCategoryFunction, retrieveQuestionsFunction } from '../helper'
+import { Link, withRouter } from "react-router-dom";
+import { connect } from 'react-redux'
+import { addQuestions } from '../redux/actions'
 
-class Questions extends React.Component {
+function mapDisptachToProps (dispatch) {
+    return {
+        addQuestions: (questions) => dispatch(addQuestions(questions))
+    }
+}
+
+const mapStateToProps = (state) => ({questions: state.questions})
+
+class QuestionsComponent extends React.Component {
     constructor (props) {
         super (props)
         this.state = {
@@ -22,10 +33,17 @@ class Questions extends React.Component {
     }
 
     async fetchQuestions (hasCategoryId) {
+        // TODO: Implement redux 
+        // if (this.props.questions.length > 0) {
+        //     this.setState({questions: this.props.questions})
+        //     console.log('Questions present in state', this.state)
+        //     return
+        // }
         let questions;
         if(hasCategoryId) questions = await retrieveQuestionsByCategoryFunction(hasCategoryId)
         else questions = await retrieveQuestionsFunction()
 
+        this.props.addQuestions(questions.results)
         this.setState({questions: questions.results, loading: false})
     }
 
@@ -39,9 +57,9 @@ class Questions extends React.Component {
         const questions = !this.state.loading 
         ? this.state.questions.map((item, i) => (
             <div className="single-question" key={i}>
-                <div className="question sub-container">
+                <Link className="question sub-container" to={{ pathname: '/question', state: { questionData: item, allQuestions: this.state.questions} }}>
                     {item.question}
-                </div>
+                </Link>
                 <div className="category sub-container">
                     {item.category}
                 </div>
@@ -59,5 +77,7 @@ class Questions extends React.Component {
         )
     }
 }
+
+const Questions = withRouter(connect(mapStateToProps, mapDisptachToProps)(QuestionsComponent))
 
 export default Questions
